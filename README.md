@@ -1,4 +1,36 @@
-# React + Vite
+# joseplorenzini.com – React Portfolio
+# Keep learning, keep fighting, keep dreaming.
+# I lost my way for a while, but this portfolio is my reminder that passion never truly dies.
+# this will be my resurrection / coming back to life
+# To every developer who feels lost: never lose hope. life as a developer can be hard but passion will make you come back
+
+#  i am coming back to life 
+
+# I’m Back. I’m Reborn.
+# This portfolio represents my comeback as a developer.
+# To anyone struggling: your story isn’t over. Keep going.
+# la pasion por web development es la que me mueve a mi el dinero no me compra.
+# If you’re a developer fighting your own battles: don’t give up.
+# We all get second chances. yo tuve mi segunda chance and i am not going to give up .
+
+
+# NODE js + React +  mongodb + AWS project .
+# visual studio code
+# mongo database 
+# amazon web server AWS C2 elastics clouds
+# react 
+
+# i created a api link
+https://joseplorenzini.com/api/posts
+
+you can use it if you want , all was set up with nginx and linux ubuntu 
+
+# listen https://joseplorenzini.com/api/posts 
+# 5:49pm chile / 7:49am sydney Australia
+
+# created with love .
+
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
