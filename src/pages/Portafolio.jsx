@@ -7,7 +7,7 @@ function Portafolio() {
        
        
        try {
-        // const res = await fetch("http://localhost:4540/posts") ; 
+       // const res = await fetch("http://localhost:4540/posts") ; 
        // const res    = await fetch("http://13.58.219.169:5000/posts") ;
         const res    = await fetch("https://joseplorenzini.com/api/posts") ;
         const data = await res.json()

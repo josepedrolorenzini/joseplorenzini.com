@@ -1,4 +1,5 @@
 import { Mail, MapPin, Globe } from "lucide-react";
+import ContactForm from "../components/ContactForm";
 
 export default function Contact({ header }) {
   return (
@@ -22,6 +23,10 @@ export default function Contact({ header }) {
                 Available for freelance projects and collaborations worldwide
               </p>
             </div>
+
+            {/* --- FORM AREA --- */}
+            <ContactForm />
+            {/* --- FORM AREA --- */}
 
             {/* --- CONTACT CARDS --- */}
             <div className="border-t border-white/10 pt-8 space-y-6">
@@ -57,7 +62,7 @@ export default function Contact({ header }) {
 
                 <div className="flex-1">
                   <p className="text-sm text-gray-400 mb-1">Currently Based</p>
-                  <p className="text-gray-200 font-medium">Viña del Mar, Chile</p>
+                  <p className="text-gray-200 font-medium">Sydney, Australia </p>
                   <p className="text-xs text-gray-500 mt-1">
                     Remote • Digital Nomad • Flexible Time Zones
                   </p>
