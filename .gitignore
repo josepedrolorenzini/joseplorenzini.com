@@ -12,6 +12,7 @@ node_modules
 dist
 ./dist/*
 ./public/
+./public/images/
 dist-ssr
 *.local
 
