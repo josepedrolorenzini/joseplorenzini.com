@@ -12,6 +12,11 @@
 i am fetching my own API with my mongo database
 https://joseplorenzini.com/api/posts
 
+# Server inside server folder 
+if you want to proper run this project with the node js server file dev .
+you must use : npm install 
+
+
 you can use it if you want , all was set up with nginx and linux ubuntu 
 https://joseplorenzini.com/api/posts 
 5:49pm chile / 7:49am sydney Australia
