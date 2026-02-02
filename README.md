@@ -42,11 +42,10 @@ If you are developing a production application, we recommend using TypeScript wi
 # this will be my resurrection / coming back to life
 # To every developer who feels lost: never lose hope. life as a developer can be hard but passion will make you come back
 
-#  i am coming back to life 
+#  Coming back to life 
 
 # I’m Back. I’m Reborn.
 # This portfolio represents my comeback as a developer.
 # To anyone struggling: your story isn’t over. Keep going.
-# la pasion por web development es la que me mueve a mi el dinero no me compra.
+# Pasion por web development  .
 # If you’re a developer fighting your own battles: don’t give up.
-# We all get second chances. yo tuve mi segunda chance and i am not going to give up .
