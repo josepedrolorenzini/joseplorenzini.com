@@ -1,9 +1,8 @@
 # joseplorenzini.com – React Portfolio
-# Keep learning, keep fighting, keep dreaming.
+#  React + NODE js +  MongoDb + AWS project .
+# Keep Learning, Keep Fighting, Keep dreaming.
 
 
-
-# NODE js + React +  mongodb + AWS project .
  visual studio code
  mongo database 
  amazon web server AWS C2 elastics clouds
@@ -17,7 +16,7 @@ you can use it if you want , all was set up with nginx and linux ubuntu
 https://joseplorenzini.com/api/posts 
 5:49pm chile / 7:49am sydney Australia
 
-# created with love .
+# Created with Love .
 
 
 
@@ -39,7 +38,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 # I lost my way for a while, but this portfolio is my reminder that passion never truly dies.
-# this will be my resurrection / coming back to life
+# This is my resurrection .
 # To every developer who feels lost: never lose hope. life as a developer can be hard but passion will make you come back
 
 #  Coming back to life 
