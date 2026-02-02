@@ -33,7 +33,7 @@ export default function Contact({ header }) {
 
               {/* Email */}
               <a
-                href="mailto:josephlorenzini81@gmail.com"
+                href="mailto:joseplorenzini@gmail.com"
                 className="flex items-center gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 group"
               >
                 <div
@@ -46,7 +46,7 @@ export default function Contact({ header }) {
                 <div className="flex-1 overflow-hidden">
                   <p className="text-sm text-gray-400 mb-1">Email</p>
                   <p className="text-gray-200 font-medium break-all group-hover:text-white">
-                    josephlorenzini81@gmail.com
+                    joseplorenzini@gmail.com
                   </p>
                 </div>
               </a>
