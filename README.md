@@ -1,55 +1,140 @@
-# joseplorenzini.com – React Portfolio
-#  React + NODE js +  MongoDb + AWS project .
-# Keep Learning, Keep Fighting, Keep dreaming.
+# joseplorenzini.com – Full-Stack React Portfolio
 
+A production-ready full-stack web application built with React, Node.js, MongoDB, and AWS, deployed behind Nginx on a Linux server.
 
- visual studio code
- mongo database 
- amazon web server AWS C2 elastics clouds
- react 
+This project demonstrates modern frontend development, backend API design, database integration, and cloud deployment.
 
-# Api link
-i am fetching my own API with my mongo database
+🔧 Tech Stack
+Frontend
+
+React (Vite)
+
+JavaScript (ES6+)
+
+HTML5 / CSS3
+
+Fetch API
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB (Mongoose)
+
+Nodemailer (contact form)
+
+Infrastructure & DevOps
+
+AWS EC2
+
+Nginx (reverse proxy)
+
+Linux (Ubuntu)
+
+PM2 (process management)
+
+Cloudflare (SSL & DNS)
+
+Development Tools
+
+Visual Studio Code
+
+npm
+
+🌐 Live Project
+
+Website
+https://joseplorenzini.com
+
+API Endpoint (MongoDB-backed)
 https://joseplorenzini.com/api/posts
 
-# Server inside server folder 
-if you want to proper run this project with the node js server file dev .
-you must use : npm install 
+📦 Project Structure
+root
+├── dist/                # React production build (served by Nginx)
+├── server/              # Node.js / Express backend
+│   ├── schema/          # MongoDB schemas (Mongoose)
+│   ├── server.js        # Main server entry point
+│   └── package.json
+├── nginx/               # Nginx configuration (AWS)
+└── README.md
+
+🚀 Features
+
+Responsive React frontend
+
+REST API built with Express.js
+
+MongoDB integration for dynamic content
+
+Contact form with email notifications (Nodemailer)
+
+Secure HTTPS setup
+
+Reverse proxy configuration using Nginx
+
+Production deployment on AWS EC2
+
+🔌 API Routes
+Method	Endpoint	Description
+GET	/api/posts	Fetch posts from MongoDB
+POST	/api/submit-form	Contact form submission
+GET	/api/chile-elections	External API integration example
+⚙️ Local Development
+Backend (Node.js)
+cd server
+npm install
+npm start
 
 
-you can use it if you want , all was set up with nginx and linux ubuntu 
-https://joseplorenzini.com/api/posts 
-5:49pm chile / 7:49am sydney Australia
+Server runs by default on:
 
-# Created with Love .
+http://localhost:5000
 
+Frontend (React)
+npm install
+npm run dev
 
+🖥️ Production Setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React build served from /dist
 
-Currently, two official plugins are available:
+Nginx handles:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+HTTPS
 
-## React Compiler
+Static assets
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+React Router SPA fallback
 
-## Expanding the ESLint configuration
+Reverse proxy to Node.js API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Node.js managed with PM2
 
+MongoDB connected via Mongoose
 
+📌 Notes for Recruiters
 
-# I lost my way for a while, but this portfolio is my reminder that passion never truly dies.
-# This is my resurrection .
-# To every developer who feels lost: never lose hope. life as a developer can be hard but passion will make you come back
+This project is fully deployed and live
 
-#  Coming back to life 
+Demonstrates end-to-end ownership:
 
-# I’m Back. I’m Reborn.
-# This portfolio represents my comeback as a developer.
-# To anyone struggling: your story isn’t over. Keep going.
-# Pasion por web development  .
-# If you’re a developer fighting your own battles: don’t give up.
+Frontend
+
+Backend
+
+Database
+
+Server configuration
+
+Deployment
+
+Built and maintained without templates or no-code platforms
+
+Focused on real-world production concerns
+
+📄 License
+
+This project is open for review and learning purposes.
