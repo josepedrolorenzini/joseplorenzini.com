@@ -8,9 +8,7 @@ export default function Contact({ header }) {
 
       <div className="flex justify-center px-4 py-10">
         <div className="w-full max-w-3xl bg-white/5 backdrop-blur-lg shadow-xl rounded-lg p-6 sm:p-8 border border-white/10 text-gray-200">
-
           <div className="space-y-10">
-
             {/* --- HEADER --- */}
             <div className="text-center px-2">
               <h2
@@ -30,7 +28,6 @@ export default function Contact({ header }) {
 
             {/* --- CONTACT CARDS --- */}
             <div className="border-t border-white/10 pt-8 space-y-6">
-
               {/* Email */}
               <a
                 href="mailto:joseplorenzini@gmail.com"
@@ -62,7 +59,9 @@ export default function Contact({ header }) {
 
                 <div className="flex-1">
                   <p className="text-sm text-gray-400 mb-1">Currently Based</p>
-                  <p className="text-gray-200 font-medium">Sydney, Australia </p>
+                  <p className="text-gray-200 font-medium">
+                    Sydney, Australia{" "}
+                  </p>
                   <p className="text-xs text-gray-500 mt-1">
                     Remote • Digital Nomad • Flexible Time Zones
                   </p>
@@ -77,14 +76,19 @@ export default function Contact({ header }) {
                 >
                   <Globe className="w-6 h-6" />
                 </div>
-                
-                <a href="https://github.com/josepedrolorenzini" target="_blank" rel="noopener noreferrer" className="flex-1">
-                <div className="flex-1">
-                  <p className="text-sm text-gray-400 mb-1">Github</p>
-                  <p className="text-gray-200 font-medium break-words">
-                   josepedrolorenzini
-                  </p>
-                </div>
+
+                <a
+                  href="https://github.com/josepedrolorenzini"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <div className="flex-1">
+                    <p className="text-sm text-gray-400 mb-1">Github</p>
+                    <p className="text-gray-200 font-medium break-words">
+                      josepedrolorenzini
+                    </p>
+                  </div>
                 </a>
               </div>
             </div>
@@ -92,13 +96,12 @@ export default function Contact({ header }) {
             {/* --- STATS AREA (Responsive Grid) --- */}
             <div className="border-t border-white/10 pt-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
                 <div className="text-center p-6 rounded-lg bg-white/5 border border-white/10">
                   <p
                     className="text-3xl sm:text-4xl font-bold mb-2"
                     style={{ color: "#b4fb51" }}
                   >
-                    16+
+                    20+
                   </p>
                   <p className="text-sm text-gray-400">
                     Years Remote Experience
@@ -112,23 +115,19 @@ export default function Contact({ header }) {
                   >
                     ∞
                   </p>
-                  <p className="text-sm text-gray-400">
-                    Countries Worked From
-                  </p>
+                  <p className="text-sm text-gray-400">Countries Worked From</p>
                 </div>
-
               </div>
             </div>
 
             {/* --- FOOTER TEXT --- */}
             <div className="text-center pt-4 px-3">
               <p className="text-gray-400 text-sm sm:text-base">
-                Open to opportunities • Full Stack Development • DevOps • Cloud Solutions
+                Open to opportunities • Full Stack Development • DevOps • Cloud
+                Solutions
               </p>
             </div>
-
           </div>
-
         </div>
       </div>
     </>

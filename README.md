@@ -1,215 +1,270 @@
-# joseplorenzini.com – Full-Stack React Portfolio
+﻿# joseplorenzini.com
 
-A production-ready full-stack web application showcasing modern web development practices. Built with React, Node.js, MongoDB, and deployed on AWS infrastructure with Nginx reverse proxy configuration.
+Portafolio personal desarrollado con React y Vite, con una API Node.js/Express para consultar proyectos en MongoDB y enviar mensajes de contacto mediante Nodemailer.
 
-**Live Website:** [joseplorenzini.com](https://joseplorenzini.com)  
-**API Endpoint:** [joseplorenzini.com/api/posts](https://joseplorenzini.com/api/posts)
+Este README documenta los archivos locales revisados el 23 de septiembre de 2026. Distingue la implementación actual del plan de reorganización: la migración a CSS Modules y la extracción de servicios todavía no están implementadas. No se verificó el servidor de producción ni se ejecutaron pruebas funcionales para esta revisión.
 
----
+## Ubicación y alcance
 
-## 🎯 What This Project Demonstrates
+La carpeta de trabajo fue renombrada de `joselorenzini.com` a `joseplorenzini.com`. La aplicación continúa dentro de `react1/amazon1`, y su paquete todavía se llama `amazon1`.
 
-This portfolio represents a complete full-stack application that I designed, developed, and deployed independently. It demonstrates:
+Este README está en `react1/amazon1/README.md`. Las rutas de la estructura general se expresan desde la carpeta de trabajo `joseplorenzini.com`, salvo indicación contraria. El repositorio Git detectado está en `react1/amazon1/.git`: el backend externo y los archivos de infraestructura no forman parte de ese repositorio por su ubicación actual.
 
-- **Frontend Development** – Building responsive, modern user interfaces with React
-- **Backend Development** – Creating RESTful APIs with Node.js and Express
-- **Database Management** – Implementing MongoDB for dynamic content storage
-- **Cloud Infrastructure** – Deploying and maintaining production applications on AWS
-- **DevOps Practices** – Server configuration, process management, and deployment workflows
-- **Security** – HTTPS implementation, environment variables, and secure data handling
+Dominio utilizado por el código: `https://joseplorenzini.com`.
 
-This isn't built from a template. Every component, from the React frontend to the Nginx configuration, was implemented to solve real production challenges.
+## Tecnologías actuales
 
----
+| Área | Implementación observada |
+| --- | --- |
+| Interfaz | React 19, JavaScript y JSX |
+| Compilación | Vite 7 y plugin React SWC |
+| Navegación | React Router 7 con BrowserRouter |
+| Estilos | Tailwind CSS 4 mediante PostCSS, más CSS propio |
+| Iconos | lucide-react |
+| Peticiones activas revisadas | Fetch API |
+| API | Node.js y Express 5 |
+| Datos | MongoDB mediante Mongoose |
+| Correo | Nodemailer con servicio Gmail |
+| Desarrollo del backend | nodemon |
 
-## 🔧 Technology Stack
+Las versiones exactas y las dependencias varían entre copias del backend. Axios está declarado en el frontend, pero los tres flujos documentados aquí utilizan `fetch`.
+
+## Estructura actual
+
+```text
+joseplorenzini.com/
+├── react1/
+│   ├── amazon1/                 # Aplicación y repositorio Git
+│   │   ├── src/
+│   │   │   ├── main.jsx         # Montaje de React y BrowserRouter
+│   │   │   ├── App.jsx          # Rutas de la aplicación
+│   │   │   ├── Layout/
+│   │   │   │   └── Layout.jsx   # Header, contenido y Footer
+│   │   │   ├── pages/
+│   │   │   │   ├── Home.jsx
+│   │   │   │   ├── About.jsx
+│   │   │   │   ├── Contact.jsx
+│   │   │   │   └── Portafolio.jsx
+│   │   │   ├── components/
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   ├── ContactForm.jsx
+│   │   │   │   ├── FetchGithub.jsx
+│   │   │   │   └── RickandMorty.jsx
+│   │   │   ├── assets/
+│   │   │   ├── index.css        # Importación de Tailwind y estilos globales
+│   │   │   └── App.css
+│   │   ├── public/images/      # Imágenes y capturas de proyectos
+│   │   ├── server/             # Una copia del backend
+│   │   ├── dist/               # Salida de compilación existente
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── vite.config.js
+│   │   ├── postcss.config.js
+│   │   └── README.md
+│   ├── documents/             # Grabación del sitio
+│   └── package.json           # Dependencias adicionales de CSS
+├── backend/
+│   ├── localserver/
+│   │   ├── server.js
+│   │   ├── server-original-bkp.js
+│   │   ├── schema/vientodelsur.model.js
+│   │   └── package.json
+│   └── server-bkp/             # Otra copia del backend
+├── aws-commands
+├── mongoDBqueries.js
+├── joseplorenzini.conf
+├── joseplorenzini.conf.conf
+└── joseplorenziniLast.conf
+```
+
+También existen archivos de entorno, certificados y claves en el espacio de trabajo. Sus valores no se reproducen en esta documentación.
+
+## Páginas y componentes
+
+| Ruta | Página | Función |
+| --- | --- | --- |
+| `/` | `Home.jsx` | Presentación e integración de repositorios GitHub |
+| `/about` | `About.jsx` | Perfil y experiencia |
+| `/contact` | `Contact.jsx` | Información de contacto y ContactForm |
+| `/portafolio` | `Portafolio.jsx` | Tarjetas obtenidas desde la API de proyectos |
+
+`main.jsx` inicializa React y BrowserRouter. `App.jsx` define las rutas y envuelve cada página con `Layout.jsx`, que incorpora Header y Footer.
+
+## Flujo de datos actual
+
+### GitHub
+
+`src/components/FetchGithub.jsx` consulta directamente:
+
+```text
+https://api.github.com/users/josepedrolorenzini/repos?sort=updated&per_page=5
+```
+
+La petición se realiza al montar el componente; los resultados se guardan en estado y se muestran como una lista de nombres de repositorios.
+
+### Portafolio
+
+`src/pages/Portafolio.jsx` consulta `https://joseplorenzini.com/api/posts`. Guarda la respuesta en estado y genera tarjetas con imagen, categoría, título, descripción, cuerpo y enlace.
+
+En `backend/localserver/schema/vientodelsur.model.js`, Mongoose conecta mediante `MONGO_URL`. El modelo se llama `VientoDelSurNet` y utiliza la colección `posts`, con campos como `id`, `title`, `body`, `category`, `description`, `image`, `url`, `created_at` y `updated_at`.
+
+### Contacto
+
+`src/components/ContactForm.jsx` envía un POST JSON a `https://joseplorenzini.com/api/submit-form` con `name`, `email` y `message`.
+
+La copia `backend/localserver/server.js` contiene validaciones de campos, formato de email y longitud del mensaje, además de escape de HTML para el correo. Nodemailer utiliza `EMAIL_USER` y `EMAIL_PASS`; el destinatario es `EMAIL_USER` y el remitente del formulario se utiliza como `replyTo`.
+
+### Rutas del backend local
+
+| Método | Ruta en backend/localserver | Función |
+| --- | --- | --- |
+| GET | `/` y `/root` | Respuestas de identificación del servidor |
+| GET | `/api/posts` | Consulta de documentos MongoDB |
+| POST | `/api/submit-form` | Validación y envío de correo |
+| GET | `/api/chile-elections` | Consulta de un servicio externo de Polymarket |
+
+Estas rutas describen el código; no implican que esta copia pueda arrancar en su estado actual. Consultar los hallazgos antes de ejecutarla.
+
+## Desarrollo local
 
 ### Frontend
-- **React** with **Vite** – Fast, modern build tooling with Hot Module Replacement
-- **JavaScript (ES6+)** – Modern JavaScript features and best practices
-- **Responsive CSS** – Mobile-first design approach
-- **Fetch API** – Asynchronous data fetching from custom backend
 
-### Backend
-- **Node.js** – JavaScript runtime for server-side logic
-- **Express.js** – Web framework for building RESTful APIs
-- **MongoDB** with **Mongoose** – NoSQL database with schema modeling
-- **Nodemailer** – Email functionality for contact form submissions
+Desde la carpeta general `joseplorenzini.com`:
 
-### Infrastructure & DevOps
-- **AWS EC2** – Elastic Compute Cloud instance for hosting
-- **Nginx** – Web server and reverse proxy configuration
-- **Ubuntu Linux** – Server operating system
-- **PM2** – Process manager for Node.js applications
-- **Cloudflare** – SSL/TLS certificates and DNS management
-
-### Development Environment
-- **Visual Studio Code** – Primary code editor
-- **npm** – Package management
-- **Git** – Version control
-
----
-
-## 📁 Project Architecture
-
-```
-joseplorenzini.com/
-├── dist/                   # Production build of React app (served by Nginx)
-├── server/                 # Node.js backend
-│   ├── schema/            # MongoDB Mongoose schemas
-│   ├── server.js          # Express server entry point
-│   ├── .env               # Environment variables (not in repo)
-│   └── package.json       # Backend dependencies
-├── src/                    # React source code
-│   ├── components/        # Reusable React components
-│   ├── pages/             # Page-level components
-│   └── assets/            # Images, styles, etc.
-├── nginx/                  # Nginx configuration files
-├── package.json            # Frontend dependencies
-└── vite.config.js         # Vite configuration
-```
-
----
-
-## 🌐 API Documentation
-
-The backend provides a RESTful API connected to MongoDB for dynamic content management.
-
-| Method | Endpoint | Description | Response |
-|--------|----------|-------------|----------|
-| `GET` | `/api/posts` | Retrieve all blog posts from MongoDB | JSON array of posts |
-| `POST` | `/api/submit-form` | Handle contact form submissions | Success/error message |
-| `GET` | `/api/chile-elections` | External API integration example | Proxied data |
-
-**Example Request:**
-```javascript
-fetch('https://joseplorenzini.com/api/posts')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
-```
-
----
-
-## 🚀 Key Features
-
-✅ **Single Page Application (SPA)** – Smooth client-side routing with React Router  
-✅ **Custom REST API** – Express.js backend serving MongoDB data  
-✅ **Database Integration** – MongoDB with Mongoose ODM for data persistence  
-✅ **Contact Form** – Email notifications via Nodemailer  
-✅ **HTTPS Security** – SSL/TLS encryption via Cloudflare  
-✅ **Reverse Proxy** – Nginx routing traffic between frontend and API  
-✅ **Production Deployment** – Live on AWS EC2 with 99.9% uptime  
-✅ **Process Management** – PM2 ensuring application reliability  
-✅ **Responsive Design** – Works seamlessly on desktop, tablet, and mobile
-
----
-
-## ⚙️ Running Locally
-
-### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB (local instance or MongoDB Atlas)
-- npm or yarn
-
-### Backend Setup
-
-```bash
-# Navigate to server directory
-cd server
-
-# Install dependencies
+```powershell
+cd react1/amazon1
 npm install
-
-# Create .env file with required variables
-# MONGODB_URI=your_mongodb_connection_string
-# EMAIL_USER=your_email
-# EMAIL_PASS=your_app_password
-
-# Start the server
-npm start
-```
-
-The API will run on `http://localhost:5000` by default.
-
-### Frontend Setup
-
-```bash
-# Install frontend dependencies
-npm install
-
-# Start development server
 npm run dev
 ```
 
-The React app will run on `http://localhost:5173` with hot reload enabled.
+Vite tiene configurado el puerto **3173** y `host: true`. Utilizar la dirección que muestre la terminal; si el puerto está ocupado, Vite puede seleccionar otro.
 
-### Production Build
+Comandos disponibles desde esa misma carpeta:
 
-```bash
-# Build optimized production bundle
+```powershell
+npm run lint
 npm run build
-
-# Preview production build locally
 npm run preview
 ```
 
----
+La compilación genera `dist/`. La existencia de esa carpeta no confirma que corresponda al código actual.
 
-## 🖥️ Production Deployment Details
+**El frontend todavía consulta producción directamente**, incluso al enviar el formulario. Arrancar Vite no redirige estas peticiones automáticamente a un backend local.
 
-### Server Configuration
-- **Platform:** AWS EC2 (t2.micro instance)
-- **OS:** Ubuntu 22.04 LTS
-- **Web Server:** Nginx 1.18+
-- **Process Manager:** PM2 for Node.js
-- **Database:** MongoDB Atlas (cloud-hosted)
+### Backend
 
-### Nginx Configuration
-Nginx is configured to:
-- Serve static React build from `/dist`
-- Proxy API requests to Node.js backend on port 5000
-- Handle SSL/TLS termination
-- Implement client-side routing fallback for SPA
-- Enable gzip compression for assets
+Antes de arrancarlo, hay que identificar la copia principal y resolver los problemas registrados abajo. En `backend/localserver`, el script declarado es `npm start`, que ejecuta `nodemon server.js`.
 
-### Deployment Workflow
-1. Code changes pushed to repository
-2. SSH into EC2 instance
-3. Pull latest changes
-4. Run `npm run build` for frontend
-5. Restart PM2 process for backend
-6. Nginx automatically serves updated files
+Variables utilizadas por esa copia:
 
----
+| Variable | Uso |
+| --- | --- |
+| `MONGO_URL` | Conexión MongoDB |
+| `EMAIL_USER` | Cuenta Gmail utilizada para el correo |
+| `EMAIL_PASS` | Credencial de correo |
+| `PORT` | Puerto del servidor; por defecto 5000 |
 
-## 💡 Why This Project Matters
+No se ha comprobado el contenido de las credenciales ni la conexión a servicios externos. El script `test` del backend es un marcador que termina con error, no una suite de pruebas.
 
-This portfolio demonstrates real-world development skills that go beyond tutorials:
+## Infraestructura documentada
 
-- **Full Ownership:** I built every layer—from React components to database schemas to server configuration
-- **Production Experience:** This isn't running on localhost; it's a live application handling real traffic
-- **Problem Solving:** I debugged CORS issues, optimized build sizes, managed environment variables, and configured reverse proxies
-- **DevOps Understanding:** I don't just write code; I deploy it, monitor it, and maintain it
+La documentación anterior describe AWS EC2 con Ubuntu, Nginx, PM2, Cloudflare y MongoDB Atlas. Esa infraestructura no fue verificada en vivo durante esta revisión.
 
-For recruiters and hiring managers: This project shows I can take an idea from concept to production deployment, managing every technical detail along the way.
+Las configuraciones Nginx locales apuntan a `/var/www/joseplorenzini.com/dist` e incluyen fallback a `index.html` para React Router y referencias a certificados Cloudflare.
 
----
+`joseplorenzini.conf.conf` incluye un proxy de `/api/` a `http://127.0.0.1:5000/`. La barra final implica que el prefijo `/api/` se sustituye al reenviar: `/api/posts` llega al backend como `/posts`. Esto debe alinearse con las rutas de la copia de backend seleccionada. No se ha determinado cuál de las configuraciones está instalada en producción.
 
-## 📫 Contact
+## Hallazgos de la revisión local
 
-Interested in discussing this project or potential opportunities?
+| Hallazgo | Evidencia y efecto |
+| --- | --- |
+| Tres copias del backend | Existen `backend/localserver`, `backend/server-bkp` y `react1/amazon1/server`; falta identificar la fuente principal. |
+| Error de sintaxis | `backend/localserver/server.js` contiene `awcait response.json()` en vez de `await response.json()`, lo que impide analizar correctamente ese archivo. |
+| Dependencias sin declarar | `backend/localserver/server.js` importa `cors` y `dotenv`, pero no aparecen en su package.json. Una instalación aislada no queda descrita de forma completa. |
+| Copia interna incompleta | `react1/amazon1/server/server.js` usa `nodemailer` sin importarlo y referencia `./schema/vientodelsur.model`; no existe esa carpeta schema en la copia revisada. |
+| Rutas diferentes | La copia interna expone `/posts`; localserver expone `/api/posts`. Deben revisarse junto al proxy. |
+| Configuración Nginx con error textual | `joseplorenzini.conf.conf` comienza con `erver {` en lugar de `server {`. No usarla directamente como configuración validada. |
+| URLs de producción en componentes | Contacto y portafolio apuntan directamente al dominio publicado. |
+| Nombre interno pendiente | El paquete frontend conserva el nombre `amazon1`. |
+| README anterior desalineado | Indicaba puerto 5173, variable MONGODB_URI y carpetas que no reflejaban completamente esta copia. Este documento corrige esas descripciones. |
 
-**Portfolio:** [https://joseplorenzini.com](https://joseplorenzini.com)  
-**Location:** Santiago, Chile (UTC-3) | Available for remote work
+Los hallazgos se basan en lectura de archivos. No se ejecutaron build, lint, backend, pruebas en navegador, envíos de correo ni comprobaciones de producción para actualizar este README. Los problemas de código listados permanecen pendientes.
 
----
+## Plan de reorganización propuesto — pendiente
 
-## 📄 License & Usage
+Objetivo: conservar el diseño, las rutas y la funcionalidad mientras se organiza el código. El cambio de nombre de la carpeta general ya se realizó; los siguientes cambios todavía no.
 
-This project is available for review and educational purposes. Please contact me for any other usage inquiries.
+### 1. Extraer peticiones a servicios
 
----
+Crear dentro de `src/services/`:
 
-**Last Updated:** February 2026  
-**Status:** ✅ Live and actively maintained
+- `githubApi.js`: obtener repositorios.
+- `portfolioApi.js`: obtener proyectos.
+- `contactApi.js`: enviar el formulario.
+
+Los servicios realizarán las peticiones y comprobarán las respuestas HTTP. Los componentes conservarán la gestión de carga, datos y errores visibles. Centralizar la dirección base en `src/config/api.js`, utilizando una variable propuesta `VITE_API_BASE_URL` para seleccionar el backend según el entorno. Esta variable todavía no está implementada y no debe contener secretos: las variables VITE se incorporan al frontend.
+
+### 2. Migrar a CSS Modules
+
+Agrupar cada componente o página con su archivo `.module.css`. Mantener reset, tipografía y estilos compartidos en `styles/globals.css`, y colores y valores comunes en `styles/variables.css`.
+
+Migrar por componente, verificando escritorio y móvil. Retirar Tailwind, su plugin y sus dependencias solo cuando no queden consumidores activos. Actualizar el lockfile junto con cualquier cambio de dependencias.
+
+### 3. Reorganizar carpetas y nombres
+
+Mover `react1/amazon1` a `frontend` y proponer `joseplorenzini-frontend` como nombre del paquete. Preservar el repositorio `.git` y los cambios locales existentes. Decidir el alcance del repositorio antes de incorporar carpetas externas.
+
+Revisar referencias al nombre anterior individualmente. No renombrar automáticamente dominios, certificados o rutas de despliegue. Identificar el backend principal antes de consolidar copias; no eliminar respaldos sin una decisión expresa.
+
+### Estructura objetivo
+
+```text
+joseplorenzini.com/
+├── frontend/
+│   ├── public/images/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Header/
+│   │   │   │   ├── Header.jsx
+│   │   │   │   └── Header.module.css
+│   │   │   ├── Footer/
+│   │   │   ├── ContactForm/
+│   │   │   └── FetchGithub/
+│   │   ├── layouts/
+│   │   │   ├── Layout.jsx
+│   │   │   └── Layout.module.css
+│   │   ├── pages/
+│   │   │   ├── Home/
+│   │   │   ├── About/
+│   │   │   ├── Contact/
+│   │   │   └── Portafolio/
+│   │   ├── services/
+│   │   │   ├── githubApi.js
+│   │   │   ├── portfolioApi.js
+│   │   │   └── contactApi.js
+│   │   ├── config/api.js
+│   │   ├── styles/
+│   │   │   ├── globals.css
+│   │   │   └── variables.css
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── backend/                 # Organización interna por definir
+├── docs/
+└── README.md
+```
+
+La ubicación futura del README en la raíz también forma parte de la propuesta. Este archivo permanece actualmente en `react1/amazon1`.
+
+### Orden y criterios de validación
+
+1. Registrar el estado inicial e identificar el backend principal y la configuración desplegada.
+2. Extraer servicios y comprobar respuestas correctas, errores y resultados vacíos.
+3. Migrar estilos por componente, comparando la apariencia en escritorio y móvil.
+4. Reorganizar carpetas, imports y nombres preservando Git y los cambios existentes.
+5. Ejecutar lint y build; comprobar las cuatro rutas, navegación directa, GitHub, portafolio y estados del formulario.
+6. Actualizar este README para reflejar lo realmente implementado.
+
+El envío real de correo y el despliegue a producción son pasos separados. La actualización de este documento no realiza la migración ni corrige los problemas de código identificados.

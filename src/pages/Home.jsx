@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { Suspense } from 'react';
+import FetchGithub from "../components/FetchGithub";
 
 export default function Home({header}) {
 
@@ -72,6 +74,12 @@ export default function Home({header}) {
               Fluent in English & Spanish
             </p>
           </div>
+        </div>
+        <div>
+
+          <Suspense  fallback={<p>Loading component...</p>}>
+          <FetchGithub />
+        </Suspense>
         </div>
   </>
 }

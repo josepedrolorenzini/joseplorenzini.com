@@ -12,20 +12,25 @@ function ContactForm() {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-        const name = formData.get("name");
-        const email = formData.get("email");
+        const name    = formData.get("name");
+        const email   = formData.get("email");
         const message = formData.get("message");
 
+        const payload = { name, email, message };
+
+        setFormularioData(payload);
+
+
         setFormularioData({
-            name,
-            email,
-            message
+            name: name,
+            email: email,
+            message: message
         });
 
         //console.log("Form submitted:", e);
         
             try {
-              //  const response = await fetch("http://localhost:5000/api/submit-form", {
+            //   const response = await fetch("http://localhost:5000/api/submit-form", {
                   const response    = await fetch("https://joseplorenzini.com/api/submit-form" , {
                     method: "POST",
                     headers: {
@@ -36,9 +41,7 @@ function ContactForm() {
                 if(!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-             setTimeout(() => {
-                console.log("set tiime out Form Data:", formularioData);
-        }, 1000);
+             console.log("Submitted payload:", payload);
             } catch (error) {
                 throw new Error("Error logging form data:", error);
             }
