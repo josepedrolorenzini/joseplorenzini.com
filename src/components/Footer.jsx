@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Footer() {
-  const [fecha , setFecha] = useState({
+  const [fecha] = useState({
     date : new Date()
   })
   return (

@@ -1,4 +1,5 @@
 const express = require("express");
+const nodemailer = require("nodemailer");
 const cors = require("cors"); 
 const fetch = require("node-fetch");
 const VientoDelSurNet = require("./schema/vientodelsur.model");

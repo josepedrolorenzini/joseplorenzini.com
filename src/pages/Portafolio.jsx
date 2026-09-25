@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 function Portafolio() {
-         const [posts,setPost] = useState({})
+         const [posts,setPost] = useState([])
 
+    useEffect(() => {
+      let ignore = false
     const fetchData = async () =>{
        
        
@@ -12,14 +14,14 @@ function Portafolio() {
         const res    = await fetch("https://joseplorenzini.com/api/posts") ;
         const data = await res.json()
         console.log(data)
-        setPost(data)
+        if (!ignore) setPost(data)
        } catch (error) {
         console.error(error);
        }
     }
 
-    useEffect(()=>{
         fetchData()
+        return () => { ignore = true }
     },[])
 
   return (
